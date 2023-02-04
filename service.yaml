@@ -1,0 +1,21 @@
+---
+# Source: sysdig-deploy/charts/agent/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: sysdig-agent
+  namespace: sysdig-agent
+  labels:
+    helm.sh/chart: agent-1.5.58
+    app.kubernetes.io/name: agent
+    app.kubernetes.io/instance: sysdig-agent
+    app.kubernetes.io/version: "12.10.1"
+    app.kubernetes.io/managed-by: Helm
+    app: "sysdig-agent"
+spec:
+  selector:
+    app.kubernetes.io/name: agent
+    app.kubernetes.io/instance: sysdig-agent
+  ports:
+  - protocol: TCP
+    port: 7765

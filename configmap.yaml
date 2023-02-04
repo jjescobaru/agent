@@ -1,0 +1,26 @@
+---
+# Source: sysdig-deploy/charts/agent/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sysdig-agent
+  namespace: sysdig-agent
+  labels:
+    helm.sh/chart: agent-1.5.58
+    app.kubernetes.io/name: agent
+    app.kubernetes.io/instance: sysdig-agent
+    app.kubernetes.io/version: "12.10.1"
+    app.kubernetes.io/managed-by: Helm
+    app: "sysdig-agent"
+data:
+  dragent.yaml: |
+    new_k8s: true
+    k8s_cluster_name: test-jose
+    security:
+      enabled: true
+      k8s_audit_server_enabled: true
+      k8s_audit_server_port: 7765
+      k8s_audit_server_url: 0.0.0.0
+    collector: collector.sysdigcloud.com
+    k8s_coldstart:
+      max_parallel_cold_starts: 1
